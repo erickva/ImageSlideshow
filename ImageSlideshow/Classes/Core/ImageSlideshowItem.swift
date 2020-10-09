@@ -66,8 +66,13 @@ open class ImageSlideshowItem: UIScrollView, UIScrollViewDelegate {
         imageView.isAccessibilityElement = true
         imageView.accessibilityTraits = .image
         if #available(iOS 11.0, *) {
-            imageView.accessibilityIgnoresInvertColors = true
+            if #available(tvOS 11.0, *) {
+                imageView.accessibilityIgnoresInvertColors = true
+            } else {
+                // Fallback on earlier versions
+            }
         }
+        
 
         imageViewWrapper.clipsToBounds = true
         imageViewWrapper.isUserInteractionEnabled = true

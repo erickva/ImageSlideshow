@@ -77,9 +77,9 @@ open class FullScreenSlideshowViewController: UIViewController {
         view.addSubview(closeButton)
     }
 
-    override open var prefersStatusBarHidden: Bool {
-        return true
-    }
+//    override open var prefersStatusBarHidden: Bool {
+//        return true
+//    }
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -103,7 +103,11 @@ open class FullScreenSlideshowViewController: UIViewController {
         if !isBeingDismissed {
             let safeAreaInsets: UIEdgeInsets
             if #available(iOS 11.0, *) {
-                safeAreaInsets = view.safeAreaInsets
+                if #available(tvOS 11.0, *) {
+                    safeAreaInsets = view.safeAreaInsets
+                } else {
+                    safeAreaInsets = UIEdgeInsets.zero
+                }
             } else {
                 safeAreaInsets = UIEdgeInsets.zero
             }

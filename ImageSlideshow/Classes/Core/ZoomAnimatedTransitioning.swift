@@ -308,7 +308,7 @@ class ZoomOutAnimator: ZoomAnimator, UIViewControllerAnimatedTransitioning {
             }
 
             // fixes the problem when the referenceSlideshowViewFrame was shifted during change of the status bar hidden state
-            if UIApplication.shared.isStatusBarHidden && !toViewController.prefersStatusBarHidden && referenceSlideshowViewFrame.origin.y != parent.referenceSlideshowViewFrame?.origin.y {
+            if referenceSlideshowViewFrame.origin.y != parent.referenceSlideshowViewFrame?.origin.y {
                 transitionViewFinalFrame = transitionViewFinalFrame.offsetBy(dx: 0, dy: 20)
             }
         } else {

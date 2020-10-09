@@ -241,7 +241,7 @@ open class ImageSlideshow: UIView {
         // scroll view configuration
         scrollView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height - 50.0)
         scrollView.delegate = self
-        scrollView.isPagingEnabled = true
+//        scrollView.isPagingEnabled = true
         scrollView.bounces = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -251,7 +251,11 @@ open class ImageSlideshow: UIView {
         }
 
         if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
+            if #available(tvOS 11.0, *) {
+                scrollView.contentInsetAdjustmentBehavior = .never
+            } else {
+                // Fallback on earlier versions
+            }
         }
         addSubview(scrollView)
 
@@ -284,7 +288,11 @@ open class ImageSlideshow: UIView {
 
             var edgeInsets: UIEdgeInsets = UIEdgeInsets.zero
             if #available(iOS 11.0, *) {
-                edgeInsets = safeAreaInsets
+                if #available(tvOS 11.0, *) {
+                    edgeInsets = safeAreaInsets
+                } else {
+                    // Fallback on earlier versions
+                }
             }
 
             pageIndicatorView.sizeToFit()
