@@ -6,6 +6,7 @@ let package = Package(
     name: "ImageSlideshow",
     platforms: [
         .iOS(.v10),
+        .tvOS(.v10),
     ],
     products: [
         .library(
